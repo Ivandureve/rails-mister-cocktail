@@ -7,6 +7,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'figaro'
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'

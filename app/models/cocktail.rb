@@ -4,4 +4,5 @@ class Cocktail < ApplicationRecord
   validates_associated :doses
   has_many :ingredients, through: :doses
   validates_associated :ingredients
+  mount_uploader :photo, PhotoUploader
 end
