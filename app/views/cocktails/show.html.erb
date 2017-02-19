@@ -1,17 +1,46 @@
 <h1><%= @cocktail.name %></h1>
-<p><%= link_to "Home", cocktails_path, class: "btn btn-primary" %></p>
+<div class="media">
+  <div class="media-body">
+    <div class="media-section">
+      <h2>Pictures</h2>
+      <%= cl_image_tag @cocktail.photo %>
+    </div>
+    <div class="media-section">
+    <% @cocktail.doses.each do |d| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= d.ingredient.name.titleize %></h3>
+        </div>
+        <div class="panel-body">
+          <p><%= d.description.titleize %> <%= link_to "Delet", cocktail_dose_path(@cocktail.id, d.id), method: :delete, class: "btn btn-danger" %></p>        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <div class="media-aside">
+    <div class="media-section">
+      <h2>Share</h2>
+      <div class="share-links">
+        <a href="#" class="share-link bg-facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="#" class="share-link bg-twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="#" class="share-link bg-email">
+          <i class="fa fa-envelope-o"></i>
+        </a>
+        <a href="#" class="share-link bg-text">
+          <i class="fa fa-mobile"></i>
+        </a>
+      </div>
+    </div>
+    <div class="media-section">
+      <p><%= link_to "Add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %></p>
+    </div>
 
-<% @cocktail.doses.each do |d| %>
-<ul>
-  <li>
-    <%= d.ingredient.name %>
-  </li>
-  <p><%= d.description %>
-    <%= link_to "Delet", dose_path(d.id), method: :delete %>
-  </p>
-</ul>
-
-<% end %>
+  </div>
+</div>
 
 
-<p><%= link_to "Add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %></p>
+
